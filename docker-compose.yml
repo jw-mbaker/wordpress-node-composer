@@ -7,7 +7,7 @@ services:
     ports:
       - ${MARIADB_PORT}:3306
     volumes:
-      - ./db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MARIADB_DATABASE: ${DB_DATABASE}
@@ -24,6 +24,7 @@ services:
     volumes:
       - ./docker/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./app:/var/www/html
+      - ${PLUGINS_DEV}:/var/www/html/wp-content/plugins
     depends_on:
       - db
     networks:
@@ -33,7 +34,7 @@ services:
       DB_USER: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_HOST: db
-      WP_DEBUG: 1
+      WP_DEBUG: ${WP_DEBUG}
 networks:
   wpsite: 
 volumes:

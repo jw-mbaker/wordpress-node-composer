@@ -77,9 +77,9 @@ $table_prefix = 'wp_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define('WP_DEBUG', (bool) ($_ENV['WP_DEBUG'] ?? false));
-define('WP_DEBUG_DISPLAY', (bool) ($_ENV['WP_DEBUG'] ?? false) );
-define('WP_DEBUG_LOG', (bool) ($_ENV['WP_DEBUG'] ?? false));
+define('WP_DEBUG', filter_var($_ENV['WP_DEBUG'] ?? false, FILTER_VALIDATE_BOOLEAN));
+define('WP_DEBUG_DISPLAY', filter_var($_ENV['WP_DEBUG'] ?? false, FILTER_VALIDATE_BOOLEAN));
+define('WP_DEBUG_LOG', filter_var($_ENV['WP_DEBUG'] ?? false, FILTER_VALIDATE_BOOLEAN));
 
 /* That's all, stop editing! Happy publishing. */
 
